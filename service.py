@@ -6,8 +6,10 @@
 """
 
 from flask import Flask, jsonify, abort, request
+from datetime import datetime
 import json
 import cx_Oracle
+import requests
 
 app = Flask(__name__)
 
@@ -55,8 +57,29 @@ def show_person(szemelyi_szam):
                 # no rows -> 404 Not Found (no need to return manually)
                 abort(404)
             else:
+                links = []
+                try:
+                    # we query the Wikipedia API to see what happened the day
+                    # the person was born based on szemelyi_szam
+                    born = datetime.strptime(szemelyi_szam[1:7], '%y%m%d')
+                    params = {
+                            'action': 'query',
+                            # 2012-04-01 -> "April 01" -> "April 1"
+                            'titles': born.strftime('%B %d').replace('0', ''),
+                            'prop': 'extlinks',
+                            'format': 'json',
+                            }
+                    # API docs: http://www.mediawiki.org/wiki/API:Tutorial
+                    res = requests.get('http://en.wikipedia.org/w/api.php', params=params)
+                    for page in res.json['query']['pages'].itervalues():
+                        for link in page['extlinks']:
+                            for href in link.itervalues():
+                                links.append(href)
+                except:
+                    pass # necessary if a clause would be empty in Python
+
                 # result set rows can be indexed too
-                return jsonify(nev=result[0])
+                return jsonify(nev=result[0], links=links)
         finally:
             cur.close()
     finally:
