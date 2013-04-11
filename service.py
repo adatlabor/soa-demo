@@ -93,6 +93,7 @@ def verb_test():
 
 
 def get_db():
+    """Connects to the RDBMS and returns a connection object"""
     with file('config.json') as config_file:
         config = json.load(config_file)
     return cx_Oracle.connect(config['user'], config['pass'], config['host'])
