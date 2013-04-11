@@ -35,6 +35,7 @@ def list_people():
         # http://docs.python.org/2/library/contextlib.html#contextlib.closing
         conn.close()
 
+
 @app.route('/szemely/<szemelyi_szam>.json')
 def show_person(szemelyi_szam):
     """Shows the details of a single person by szemelyi_szam"""
