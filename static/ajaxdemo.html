@@ -13,11 +13,11 @@
                 for (var i = 0; i < szemelyek.length; i++) {
                     var szemely = szemelyek[i];
 
-                    /* insert row on last position (-1)
+                    /* insert row and cells on last position (-1)
                        http://www.w3schools.com/jsref/dom_obj_table.asp */
                     var row = table.insertRow(-1);
-                    var cell_nev = row.insertCell();
-                    var cell_ssz = row.insertCell();
+                    var cell_nev = row.insertCell(-1);
+                    var cell_ssz = row.insertCell(-1);
 
                     /* $(element) makes it possible to call jQuery
                        convenience methods on them like text() */
