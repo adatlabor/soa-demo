@@ -5,7 +5,7 @@
     SOA service demo
 """
 
-from flask import Flask, jsonify, abort
+from flask import Flask, jsonify, abort, request
 import json
 import cx_Oracle
 
@@ -60,6 +60,12 @@ def show_person(szemelyi_szam):
             cur.close()
     finally:
         conn.close()
+
+
+@app.route('/verbtest.json', methods=['PUT', 'POST'])
+def verb_test():
+    """Lets you test HTTP verbs different from GET, expects and returns data in JSON format"""
+    return jsonify(method=request.method, data=request.json)
 
 
 def get_db():
