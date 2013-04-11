@@ -1,0 +1,5 @@
+{
+    "user": "your Oracle username comes here",
+    "pass": "your Oracle password comes here",
+    "host": "rapid.eik.bme.hu:1521/SZGLAB"
+}
