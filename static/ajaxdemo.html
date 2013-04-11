@@ -6,6 +6,11 @@
     </head>
     <body>
         <script type="text/javascript">
+            function button_click_handler(evt) {
+                var button = evt.target;
+                alert("szemelyi_szam = " + button.name);
+            }
+
             function load_data_into_table(data) {
                 var szemelyek = data.szemelyek;
                 var table = document.getElementById("people");
@@ -18,11 +23,19 @@
                     var row = table.insertRow(-1);
                     var cell_nev = row.insertCell(-1);
                     var cell_ssz = row.insertCell(-1);
+                    var cell_btn = row.insertCell(-1);
 
                     /* $(element) makes it possible to call jQuery
                        convenience methods on them like text() */
                     $(cell_nev).text(szemely.nev);
                     $(cell_ssz).text(szemely.szemelyi_szam);
+
+                    var button = document.createElement("input");
+                    button.setAttribute("type", "button");
+                    button.setAttribute("value", ">");
+                    button.setAttribute("name", szemely.szemelyi_szam);
+                    cell_btn.appendChild(button);
+                    $(button).click(button_click_handler);
                 }
             }
 
