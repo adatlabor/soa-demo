@@ -3,6 +3,19 @@
 """
     Software Laboratory 5
     SOA service demo
+
+    This sample service was created for the purposes of demonstrating some
+    of the functionality you can achieve by combining the power of three
+    Python libraries: cx_Oracle, Flask, and Requests.
+
+    It does not intend to be perfect Python code -- in some places, perfection
+    was traded for simplicity, some of these are marked in comments.
+
+    This comment is a so-called docstring, all Python modules and
+    functions/methods should have one. Three " or ' characters make it
+    possible for multiline strings, and interactive Python environments
+    display these "docstrings" (basically header comments) for users of
+    your code. Further info: http://www.python.org/dev/peps/pep-0257/
 """
 
 from flask import Flask, jsonify, abort, request
@@ -27,6 +40,9 @@ def list_people():
             # there's a better way, but outside the scope of this lab:
             # http://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
             results = []
+            # we make use of the fact that
+            #  - cursors are iterable and
+            #  - `for` can unpack objects returned by each iteration
             for szemelyi_szam, nev in cur:
                 results.append({'szemelyi_szam': szemelyi_szam, 'nev': nev})
             return jsonify(szemelyek=results)
@@ -89,11 +105,13 @@ def show_person(szemelyi_szam):
 @app.route('/verbtest.json', methods=['PUT', 'POST'])
 def verb_test():
     """Lets you test HTTP verbs different from GET, expects and returns data in JSON format"""
+    # it also shows you how to access the method used and the decoded JSON data
     return jsonify(method=request.method, data=request.json)
 
 
 def get_db():
     """Connects to the RDBMS and returns a connection object"""
+    # when used with a `file` object, `with` ensures it gets closed
     with file('config.json') as config_file:
         config = json.load(config_file)
     return cx_Oracle.connect(config['user'], config['pass'], config['host'])
