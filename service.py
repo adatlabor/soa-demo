@@ -108,7 +108,7 @@ def show_person(szemelyi_szam):
 def verb_test():
     """Lets you test HTTP verbs different from GET, expects and returns data in JSON format"""
     # it also shows you how to access the method used and the decoded JSON data
-    return jsonify(method=request.method, data=request.json)
+    return jsonify(method=request.method, data=request.json, url=request.url)
 
 
 def get_db():
