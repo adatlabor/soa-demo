@@ -121,4 +121,5 @@ def get_db():
 
 if __name__ == "__main__":
     import os
+    os.environ['NLS_LANG'] = '.UTF8'
     app.run(debug=True, port=os.getuid() + 10000)
