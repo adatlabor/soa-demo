@@ -120,4 +120,5 @@ def get_db():
 
 
 if __name__ == "__main__":
-    app.run()
+    import os
+    app.run(debug=True, port=os.getuid() + 10000)
