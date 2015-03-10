@@ -103,6 +103,25 @@ def show_person(szemelyi_szam):
     finally:
         conn.close()
 
+@app.route('/datetest.json')
+def date_test():
+    conn = get_db()
+    try:
+        cur = conn.cursor()
+        try:
+	        # http://www.oracle.com/technetwork/articles/dsl/prez-python-timesanddates-093014.html
+	        # https://docs.python.org/2/library/datetime.html
+            # its casted automatically to datetime
+            cur.execute('SELECT datum, usd FROM oktatas.mnb_deviza where id < 10')
+            results = []
+            for datum, usd in cur:
+                results.append({'datum': datum, 'datum_iso' : datum.isoformat(), 'usd': usd})
+            return jsonify(arfolyamok=results)
+        finally:
+            cur.close()
+    finally:
+        conn.close()
+
 
 @app.route('/verbtest.json', methods=['PUT', 'POST'])
 def verb_test():
