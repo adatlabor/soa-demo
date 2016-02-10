@@ -65,7 +65,7 @@ def show_person(szemelyi_szam):
                     sz=szemelyi_szam)
             # fetchone() returns a single row if there's one, otherwise None
             result = cur.fetchone()
-            # in Python '=' compares by value, 'is' compares by reference
+            # in Python '==' compares by value, 'is' compares by reference
             # (of course, former would work too, but it's slower and unnecessary)
             # 'None' is the Python version of null, it's a singleton object, so
             # we can safely compare to it using 'is' (Java/C#: result == null)
