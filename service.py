@@ -34,6 +34,8 @@ def list_people():
         cur = conn.cursor()
         try:
             # this table has 10k rows, so we intentionally limit the result set to 50
+            # (Oracle note: not the first 50 rows by name, but rather
+            # the first 50 rows of the table, which are then ordered by name)
             # also, long queries can be broken into two shorter lines like this
             cur.execute('''SELECT szemelyi_szam, nev FROM oktatas.szemelyek
                 WHERE ROWNUM < 50 ORDER BY nev ASC''')
