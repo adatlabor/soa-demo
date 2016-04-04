@@ -89,8 +89,8 @@ def show_person(szemelyi_szam):
                             }
                     # API docs: http://www.mediawiki.org/wiki/API:Tutorial
                     # Example for 1st April:
-                    # http://en.wikipedia.org/w/api.php?action=query&format=json&prop=extlinks&titles=April%201
-                    res = requests.get('http://en.wikipedia.org/w/api.php', params=params)
+                    # https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extlinks&titles=April%201
+                    res = requests.get('https://en.wikipedia.org/w/api.php', params=params)
                     for page in res.json()['query']['pages'].itervalues():
                         for link in page['extlinks']:
                             for href in link.itervalues():
