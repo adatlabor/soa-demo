@@ -113,7 +113,7 @@ def date_test():
         try:
             # http://www.oracle.com/technetwork/articles/dsl/prez-python-timesanddates-093014.html
             # https://docs.python.org/2/library/datetime.html
-            # its casted automatically to datetime
+            # it's casted automatically to datetime
             cur.execute('SELECT datum, usd FROM oktatas.mnb_deviza where id < 10')
             results = []
             for datum, usd in cur:
