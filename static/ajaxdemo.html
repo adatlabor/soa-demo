@@ -6,6 +6,16 @@
     </head>
     <body>
         <script type="text/javascript">
+			if (location.protocol == "file:") {
+				document.write("<div style='background: #f00; color: #fff; " +
+					"padding: 16px; font-weight: bold; text-align: center;'>" +
+					"You've opened this file from your local hard drive. " +
+					"You won't be able to call your services this way.<br />" +
+					"Open this file from <code>http://localhost:XXXXX/static/" +
+					location.href.split("/").pop() + "</code> where <code>XXXXX</code> is " +
+					"your own port printed by Flask on the console.</div>");
+			}
+
             function button_click_handler(evt) {
                 var button = evt.target;
                 alert("szemelyi_szam = " + button.name);
