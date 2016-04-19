@@ -33,10 +33,12 @@ def list_people():
     try:
         cur = conn.cursor()
         try:
-            # this table has 10k rows, so we intentionally limit the result set to 50
+            # Note: don't use prefixes like "oktatas." above for tables
+            # within your own schema, as it ruins portability.
+            # This table has 10k rows, so we intentionally limit the result set to 50
             # (Oracle note: not the first 50 rows by name, but rather
-            # the first 50 rows of the table, which are then ordered by name)
-            # also, long queries can be broken into two shorter lines like this
+            # the first 50 rows of the table, which are then ordered by name).
+            # Also, long queries can be broken into two shorter lines like this
             cur.execute('''SELECT szemelyi_szam, nev FROM oktatas.szemelyek
                 WHERE ROWNUM < 50 ORDER BY nev ASC''')
             # there's a better way, but outside the scope of this lab:
@@ -63,6 +65,8 @@ def show_person(szemelyi_szam):
     try:
         cur = conn.cursor()
         try:
+            # Note: don't use prefixes like "oktatas." above for tables
+            # within your own schema, as it ruins portability
             cur.execute('SELECT nev FROM oktatas.szemelyek WHERE szemelyi_szam = :sz',
                     sz=szemelyi_szam)
             # fetchone() returns a single row if there's one, otherwise None
@@ -111,6 +115,8 @@ def date_test():
     try:
         cur = conn.cursor()
         try:
+            # Note: don't use prefixes like "oktatas." above for tables
+            # within your own schema, as it ruins portability
             # http://www.oracle.com/technetwork/articles/dsl/prez-python-timesanddates-093014.html
             # https://docs.python.org/2/library/datetime.html
             # it's casted automatically to datetime
