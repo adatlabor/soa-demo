@@ -100,7 +100,7 @@ def show_person(szemelyi_szam):
                         for link in page['extlinks']:
                             for href in link.itervalues():
                                 links.append(href)
-                except:
+                except IOError:
                     pass # necessary if a clause would be empty in Python
 
                 # result set rows can be indexed too
