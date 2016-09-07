@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# pylint: disable=invalid-name
 
 """
     Software Laboratory 5
@@ -148,6 +149,7 @@ def get_db():
 
 
 if __name__ == "__main__":
+    # pylint: disable=wrong-import-position,wrong-import-order
     import os
     os.environ['NLS_LANG'] = '.UTF8'
     app.run(debug=True, port=os.getuid() + 10000)
