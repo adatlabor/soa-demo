@@ -69,7 +69,7 @@ def show_person(szemelyi_szam):
             # Note: don't use prefixes like "oktatas." above for tables
             # within your own schema, as it ruins portability
             cur.execute('SELECT nev FROM oktatas.szemelyek WHERE szemelyi_szam = :sz',
-                    sz=szemelyi_szam)
+                        sz=szemelyi_szam)
             # fetchone() returns a single row if there's one, otherwise None
             result = cur.fetchone()
             # in Python '==' compares by value, 'is' compares by reference
@@ -86,12 +86,12 @@ def show_person(szemelyi_szam):
                     # the person was born based on szemelyi_szam
                     born = datetime.strptime(szemelyi_szam[1:7], '%y%m%d')
                     params = {
-                            'action': 'query',
-                            # 2012-04-01 -> "April 01" -> "April 1"
-                            'titles': born.strftime('%B %d').replace('0', ''),
-                            'prop': 'extlinks',
-                            'format': 'json',
-                            }
+                        'action': 'query',
+                        # 2012-04-01 -> "April 01" -> "April 1"
+                        'titles': born.strftime('%B %d').replace('0', ''),
+                        'prop': 'extlinks',
+                        'format': 'json',
+                        }
                     # API docs: http://www.mediawiki.org/wiki/API:Tutorial
                     # Example for 1st April:
                     # https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extlinks&titles=April%201
