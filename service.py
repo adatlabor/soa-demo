@@ -18,9 +18,10 @@
     your code. Further info: http://www.python.org/dev/peps/pep-0257/
 """
 
-from flask import Flask, jsonify, abort, request
 from datetime import datetime
 import json
+
+from flask import Flask, jsonify, abort, request
 import cx_Oracle
 import requests
 
