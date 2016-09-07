@@ -112,6 +112,7 @@ def show_person(szemelyi_szam):
 
 @app.route('/datetest.json')
 def date_test():
+    """Demonstrates handling dates from databases and formatting it according to ISO 8601"""
     conn = get_db()
     try:
         cur = conn.cursor()
