@@ -1,5 +1,5 @@
-Software Laboratory 5 SOA service demo
-======================================
+Databases Laboratory 5 SOA service demo
+=======================================
 
 Usage
 -----

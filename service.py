@@ -2,7 +2,7 @@
 # pylint: disable=invalid-name
 
 """
-    Software Laboratory 5
+    Databases Laboratory 5
     SOA service demo
 
     This sample service was created for the purposes of demonstrating some
